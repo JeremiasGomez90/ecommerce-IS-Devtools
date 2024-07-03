@@ -4,12 +4,12 @@ import { Order } from "../entities/Order";
 
 export class OrderController {
   static createOrder = async (req: Request, res: Response) => {
-    const { userId, items, total } = req.body;
+    const { items, total } = req.body;
 
     try {
       const orderRepository = AppDataSource.getRepository(Order);
       const newOrder = orderRepository.create({
-        user: { id: userId },
+        user: { id: req.userId },
         items,
         total,
       });
@@ -24,12 +24,10 @@ export class OrderController {
   };
 
   static getOrdersByUser = async (req: Request, res: Response) => {
-    const userId = req.params.userId;
-
     try {
       const orderRepository = AppDataSource.getRepository(Order);
       const orders = await orderRepository.find({
-        where: { user: { id: Number(userId) } },
+        where: { user: { id: req.userId } },
       });
 
       res.status(200).json({ orders });

@@ -12,10 +12,10 @@ export class Order {
   @Column("simple-json")
   items!: {
     brand: string;
-    quantity: number;
-    price: number;
-    imgSrc: string;
     description: string;
+    imgSrc: string;
+    price: number;
+    quantity: number;
   }[];
 
   @Column("decimal")

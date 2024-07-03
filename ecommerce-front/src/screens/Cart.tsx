@@ -121,7 +121,7 @@ export const CartPage = () => {
           {productsInCart.length > 0 && (
             <button
               onClick={handleCheckout}
-              className="rounde mr-3 bg-green-700 py-1.5 px-6 h-10 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
+              className="mr-3 bg-green-700 py-1.5 px-6 h-10 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
             >
               Checkout
             </button>

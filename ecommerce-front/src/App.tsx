@@ -12,9 +12,10 @@ import { RegisterPage } from "./screens/Register";
 import { HomePage } from "./screens/Home";
 import { ProductPage } from "./screens/Product";
 import { CheckoutPage } from "./screens/Checkout";
-import { Layout } from "./layouts/Layout.tsx";
-import { CartPage } from "./screens/Cart.tsx";
-import { OrdersPage } from "./screens/Orders.tsx";
+import { CheckoutSuccessPage } from "./screens/CheckoutSuccess";
+import { Layout } from "./layouts/Layout";
+import { CartPage } from "./screens/Cart";
+import { OrdersPage } from "./screens/Orders";
 
 // Context
 import AuthProvider from "./context/AuthContext.tsx";
@@ -52,6 +53,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <CheckoutPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/checkout/success"
+                element={
+                  <PrivateRoute>
+                    <CheckoutSuccessPage />
                   </PrivateRoute>
                 }
               />

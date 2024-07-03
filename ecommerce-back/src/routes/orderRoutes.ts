@@ -5,6 +5,6 @@ import { auth } from "../middleware/authMiddleware";
 const router = Router();
 
 router.post("/", auth, OrderController.createOrder);
-router.get("/:userId", auth, OrderController.getOrdersByUser);
+router.get("/", auth, OrderController.getOrdersByUser);
 
 export default router;

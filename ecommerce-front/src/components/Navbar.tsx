@@ -26,6 +26,14 @@ export const Navbar = () => {
           )}
           {loggedIn ? (
             <>
+              <Link to="/orders">
+                <button
+                  type="button"
+                  className="rounde ml-3 bg-red-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
+                >
+                  My orders
+                </button>
+              </Link>
               <button
                 type="button"
                 className="rounde ml-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"

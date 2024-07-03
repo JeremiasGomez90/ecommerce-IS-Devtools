@@ -1,7 +1,29 @@
+import axios from "axios";
 import { useCart } from "../hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 export const CheckoutPage = () => {
-  const { productsInCart } = useCart();
+  const { productsInCart, clearCart } = useCart();
+  const navigate = useNavigate();
+  async function handlePlaceOrder() {
+    const total = productsInCart
+      .reduce((acc, item) => acc + item.quantity * item.price, 0)
+      .toFixed(2);
+    try {
+      const response = await axios.post("http://localhost:5000/api/orders", {
+        items: productsInCart,
+        total,
+      });
+
+      if (response.data) {
+        clearCart();
+        navigate("/checkout/success");
+      }
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log({ error });
+    }
+  }
   return (
     <div className="container mx-auto px-4 md:px-6 py-12 pt-24">
       <div className="w-full max-w-5xl mx-auto py-12 px-4 md:px-6">
@@ -111,7 +133,10 @@ export const CheckoutPage = () => {
                 </form>
               </div>
               <div>
-                <button className="mt-4 w-full rounde mr-3 bg-green-700 py-1.5 px-6 h-10 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg">
+                <button
+                  onClick={handlePlaceOrder}
+                  className="mt-4 w-full rounde mr-3 bg-green-700 py-1.5 px-6 h-10 text-center text-sm font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
+                >
                   Place Order
                 </button>
               </div>
